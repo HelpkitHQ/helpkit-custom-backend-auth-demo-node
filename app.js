@@ -18,8 +18,9 @@ app.get('/login', (_, res) => {
 app.post('/login', (req, res) => {
   const { username, password } = req.body
   // 🔒 mock check
-  if (username === 'user' && password === 'pass') {
+  if (username === 'user' && password === 'demo') {
     const token = jwt.sign({ username }, SECRET, { expiresIn: '1h' })
+    console.log(`🔑 token: ${token}`)
     return res.redirect(`${SITE}/?jwt_token=${token}`)
   }
   res.render('login', { error: 'Invalid credentials' })
