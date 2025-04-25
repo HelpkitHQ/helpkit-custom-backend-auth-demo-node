@@ -63,7 +63,7 @@ HelpKit's protected access feature allows you to restrict access to your knowled
 - Node.js (v14 or newer)
 - npm or yarn
 - A HelpKit site with protected access enabled
-- A visitor signing key from HelpKit
+- A visitor secret signing key from HelpKit
 
 ## Setup Instructions
 
@@ -101,7 +101,7 @@ HelpKit's protected access feature allows you to restrict access to your knowled
 1. Users visit your custom login page (`/login`)
 2. After successful authentication, your backend:
    - Generates a JWT token signed with your HelpKit visitor signing key
-   - Redirects users to your HelpKit site with the token (`https://your-helpkit-site.com/access?jwt_token=...`)
+   - Redirects users to your HelpKit site with the token (`https://your-project-name.helpkit.so/access?jwt_token=...`)
 3. HelpKit validates the token and grants access if valid
 
 ## Demo Credentials

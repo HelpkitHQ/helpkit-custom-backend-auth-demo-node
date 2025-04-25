@@ -56,7 +56,7 @@ app.post('/login', (req, res) => {
 
     // Sign the token with your HelpKit visitor signing key
     // You can adjust the expiration time as needed
-    const token = jwt.sign(payload, SECRET, { expiresIn: '1h' })
+    const token = jwt.sign(payload, SECRET, { expiresIn: '7d' })
 
     console.log(`🔑 Generated JWT token for user: ${username}`)
 
