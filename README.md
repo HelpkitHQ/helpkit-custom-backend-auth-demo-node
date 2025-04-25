@@ -2,6 +2,10 @@
 
 This is a sample Node.js application demonstrating how to implement custom backend authentication with HelpKit's protected access feature. The demo uses JWT (JSON Web Tokens) for authentication.
 
+## What is HelpKit?
+
+HelpKit is a modern documentation and help center platform that helps teams create beautiful, searchable knowledge bases. It offers protected access features that allow you to restrict content to authenticated users only. With its powerful customization options and developer-friendly approach, HelpKit makes it easy to create and maintain documentation that your users will love. Visit [helpkit.so](https://www.helpkit.so) to learn more about how HelpKit can transform your documentation experience.
+
 ## Overview
 
 HelpKit's protected access feature allows you to restrict access to your knowledge base to authenticated users only. This demo shows how to:
@@ -84,9 +88,11 @@ HelpKit's protected access feature allows you to restrict access to your knowled
 
    ```
    HELPKIT_VISITOR_SECRET_KEY=your_visitor_signing_key
-   HELPKIT_SITE_URL=https://your-helpkit-site.com/access
-   PORT=4000
+   HELPKIT_SITE_URL=https://your-project-name.helpkit.so/access (Use custom domain if you have one)
+   PORT=9000
    ```
+
+   Note: Make sure to append `/access` to your HelpKit site URL.
 
 4. Start the server:
 

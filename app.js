@@ -15,7 +15,7 @@ const jwt = require('jsonwebtoken')
 const app = express()
 
 // Extract environment variables
-const { HELPKIT_VISITOR_SECRET_KEY: SECRET, HELPKIT_SITE_URL: SITE, PORT = 4000 } = process.env
+const { HELPKIT_VISITOR_SECRET_KEY: SECRET, HELPKIT_SITE_URL: SITE, PORT = 9000 } = process.env
 
 // Ensure required environment variables are set
 if (!SECRET || !SITE) {
