@@ -31,8 +31,12 @@ app.use(bodyParser.urlencoded({ extended: false }))
  * Serve login form
  * This is the endpoint you would configure in HelpKit settings as your sign-in URL
  */
-app.get('/login', (_, res) => {
-  res.render('login', { error: null })
+app.get('/login', (req, res) => {
+  // Capture the returnTo parameter if present
+  res.render('login', {
+    error: null,
+    returnTo: req.query.returnTo || null,
+  })
 })
 
 /**
@@ -41,6 +45,7 @@ app.get('/login', (_, res) => {
  */
 app.post('/login', (req, res) => {
   const { username, password } = req.body
+  const returnTo = req.query.returnTo || null
 
   // 🔒 Mock authentication - replace with your actual auth logic
   if (username === 'user' && password === 'demo') {
@@ -58,14 +63,24 @@ app.post('/login', (req, res) => {
     // You can adjust the expiration time as needed
     const token = jwt.sign(payload, SECRET, { expiresIn: '7d' })
 
-    console.log(`🔑 Generated JWT token for user: ${username}`)
+    // Build the redirect URL
+    let redirectUrl = `${SITE}/?jwt_token=${token}`
+    if (returnTo) {
+      redirectUrl += `&returnTo=${encodeURIComponent(returnTo)}`
+    }
 
-    // Redirect to HelpKit with the token
-    return res.redirect(`${SITE}/?jwt_token=${token}`)
+    console.log(`🔑 Generated JWT token for user: ${username}`)
+    console.log(`🔄 Redirecting to: ${redirectUrl}`)
+
+    // Redirect to HelpKit with the token and returnTo parameter
+    return res.redirect(redirectUrl)
   }
 
-  // Handle failed login
-  res.render('login', { error: 'Invalid credentials' })
+  // Handle failed login - preserve the returnTo parameter in case of error
+  res.render('login', {
+    error: 'Invalid credentials',
+    returnTo,
+  })
 })
 
 // Redirect all other routes to login
